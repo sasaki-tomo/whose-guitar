@@ -1,0 +1,28 @@
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+
+		<h1>Editing Guitar</h1>
+
+		<%= render "guitars/form", guitar: @guitar %>
+		<%= link_to "Show", guitar_path(@guitar), class: "guitar_#{@guitar.id}" %>
+		|
+		<%= link_to "Back", guitars_path, class: "back" %>
+
+	<div class="error">
+   <% if @guitar.errors.any? %>
+   <div id="error_explanation" class="alert alert-danger error">
+    <ul>
+     error
+     <% @guitar.errors.full_messages.each do |message| %>
+      <li><%=message %></li>
+      <% end %>
+    </ul>
+   </div>
+   <% end %>
+   </div>
+   
+	</div>
+	<div class="col-md-3"></div>
+
+
+</div>

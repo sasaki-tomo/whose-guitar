@@ -1,0 +1,48 @@
+<div class="row">
+	<div class="col-xs-3">
+
+		<h2>User info</h2>
+		<%= render 'users/profile', user: @user %>
+
+		<h2>New guitar</h2>
+		<%= render 'guitars/form', guitar: @guitar_new %>
+
+	</div>
+
+	<div class="col-xs-9">
+		<h2> detail</h2>
+		<table class="table">
+				<tr>
+					<td>
+						<%= link_to user_path(@guitar.user) do %>
+							<%= attachment_image_tag(@guitar.user, :profile_image, :fill, 100, 100, fallback: "no-image-mini.jpg") %><br>
+						<%= @guitar.user.name %>
+						<% end %>
+					</td>
+					<td><%= link_to @guitar.title, guitar_path(@guitar) %></td>
+					<td><%= @guitar.body %></td>
+	
+	        
+               <%= render 'guitars/favorites', guitar: @guitar %>
+               
+             <td>
+              <div class="comment-count">コメント数：<%= @guitar.guitar_comments.count %></div>
+            </div>    
+            </td>
+            
+            
+              
+        
+
+	               <% if @guitar.user_id == current_user.id %>
+					 <td><%= link_to "Edit", edit_guitar_path(@guitar), class: "btn-sm btn-success edit_guitar_#{@guitar.id}" %></td>
+					 <td><%= link_to "Destroy", guitar_path(@guitar), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_guitar_#{@guitar.id}" %></td>
+			       <% end %>
+				</tr>
+		</table>
+		
+	<%= render 'guitars/comments', guitar: @guitar, guitar_comment: @guitar_comment %>
+		
+	</div>
+</div>
+</div>

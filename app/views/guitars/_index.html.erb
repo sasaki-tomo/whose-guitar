@@ -1,0 +1,23 @@
+<table class='table table-hover table-inverse'>
+ <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Opinion</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% guitars.each do |guitar| %>
+      <tr>
+        <td><%= link_to user_path(guitar.user) do %>
+          <%= attachment_image_tag(guitar.user, :profile_image, :fill, 50, 50, fallback: "no-image-icon.jpg") %>
+          <% end %>
+        </td>
+        <td><%= link_to guitar.title, guitar_path(guitar), class: "guitar_#{guitar.id}" %></td>
+        <td><%= guitar.body %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,72 @@
+<div class="row">
+	<div class="col-xs-3">
+
+		<h2>User info</h2>
+		<%= render 'users/profile', user: @user %>
+
+		<h2>New guitar</h2>
+		<%= render 'guitars/form', guitar: @guitar %>
+
+  <div class="error">
+   <% if @guitar.errors.any? %>
+   <div id="error_explanation" class="alert alert-danger error">
+    <ul>
+     error
+     <% @guitar.errors.full_messages.each do |message| %>
+      <li><%=message %></li>
+      <% end %>
+    </ul>
+   </div>
+   <% end %>
+   </div>
+
+
+	</div>
+
+	<div class="col-xs-9">
+		<h2>GUitars index</h2>
+		<!--guitars一覧 -->
+		<table class="table table-hover table-inverse">
+			<thead>
+				<tr>
+					<th></th>
+					<th>Title</th>
+					<th>Opinion</th>
+					<th colspan="3"></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<% @guitars.each do |guitar| %>
+				<tr>
+					<td>
+						<%= link_to user_path(guitar.user) do %>
+							<%= attachment_image_tag(guitar.user, :profile_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %>
+						<% end %>
+					</td>
+					<td><%= link_to guitar.title, guitar_path(guitar), class: "guitar_#{guitar.id}" %></td>
+					<td><%= guitar.body %></td>
+					<%= render 'books/favorites', guitar: guitar%>
+				    
+				    
+				    <td>
+				     <ul class="inline-meta">
+                        <%= link_to "コメント数　#{guitar.guitar_comments.count}", guitar_path(guitar.id) %>
+                       </li>
+                     </ul>
+                    </td>
+				    
+				    
+				</tr>
+				<% end %>
+	
+            
+			</tbody>
+		</table>
+
+		<!--guitars一覧 -->
+
+
+	</div>
+</div>
+
