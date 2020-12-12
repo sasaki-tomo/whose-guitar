@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :guitars
   has_many :favorites
   has_many :guitar_comments
-  
+
   attachment :profile_image, destroy: false
 
   validates :name, presence: true, length: { minimum: 2, maximum: 20 }
